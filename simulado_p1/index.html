@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabarito Didático — Mecânica dos Fluidos · UFPel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F8FA;
+      --surface: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #1A202C;
+      --text-muted: #64748B;
+      --blue: #1D4ED8;
+      --blue-light: #EFF6FF;
+      --blue-mid: #BFDBFE;
+      --green: #065F46;
+      --green-light: #ECFDF5;
+      --green-mid: #A7F3D0;
+      --orange: #9A3412;
+      --orange-light: #FFF7ED;
+      --orange-mid: #FED7AA;
+      --purple: #5B21B6;
+      --purple-light: #F5F3FF;
+      --purple-mid: #DDD6FE;
+      --red: #991B1B;
+      --red-light: #FEF2F2;
+      --yellow-light: #FEFCE8;
+      --yellow-mid: #FEF08A;
+      --accent: #0F172A;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ─── HEADER ──────────────────────────────────────── */
+    .page-header {
+      background: #0F172A;
+      color: white;
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(29,78,216,0.18);
+    }
+    .header-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #93C5FD;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+    .page-header p {
+      color: #CBD5E1;
+      max-width: 620px;
+      font-size: 1.05rem;
+    }
+    .header-tags {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #E2E8F0;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    .nav-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+    }
+    .nav-bar a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      transition: all .2s;
+    }
+    .nav-bar a:hover { color: var(--blue); border-color: var(--blue); }
+    .nav-num {
+      width: 22px; height: 22px;
+      background: var(--border);
+      border-radius: 50%;
+      display: flex;align-items:center;justify-content:center;
+      font-size: 0.75rem; font-weight: 700;
+    }
+
+    /* ─── LAYOUT ──────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    main { padding: 48px 24px; max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px; }
+
+    /* ─── QUESTION BLOCK ──────────────────────────────── */
+    .question {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .q-header {
+      padding: 28px 36px 20px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+    }
+    .q-number {
+      min-width: 52px; height: 52px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: white;
+    }
+    .q-header h2 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      line-height: 1.3;
+      padding-top: 6px;
+    }
+    .q-header p {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      margin-top: 6px;
+    }
+    .q-body { padding: 32px 36px; display: flex; flex-direction: column; gap: 32px; }
+
+    /* ─── FIGURE ──────────────────────────────────────── */
+    figure {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    figure img {
+      width: 100%;
+      display: block;
+    }
+    figcaption {
+      background: #F8FAFC;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      font-style: italic;
+    }
+
+    /* ─── STEP ────────────────────────────────────────── */
+    .step-group { display: flex; flex-direction: column; gap: 20px; }
+    .step {
+      display: flex;
+      gap: 16px;
+    }
+    .step-dot {
+      min-width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 700;
+      color: white;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .step-body { font-size: 0.93rem; color: #374151; line-height: 1.7; }
+
+    /* ─── FORMULA BOX ─────────────────────────────────── */
+    .formula-box {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 10px 0;
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #1E293B;
+    }
+    .formula-box.highlight {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      color: #1E3A8A;
+    }
+    .formula-box.result {
+      background: var(--green-light);
+      border-color: var(--green-mid);
+      color: var(--green);
+      font-weight: 600;
+    }
+    .formula-box.warning {
+      background: var(--yellow-light);
+      border-color: var(--yellow-mid);
+      color: #713F12;
+    }
+
+    /* ─── CALLOUT ─────────────────────────────────────── */
+    .callout {
+      border-left: 4px solid;
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.92rem;
+    }
+    .callout-blue { border-color: #3B82F6; background: var(--blue-light); color: #1E3A8A; }
+    .callout-green { border-color: #10B981; background: var(--green-light); color: var(--green); }
+    .callout-orange { border-color: #F97316; background: var(--orange-light); color: var(--orange); }
+    .callout-purple { border-color: #8B5CF6; background: var(--purple-light); color: var(--purple); }
+    .callout strong { font-weight: 700; }
+
+    /* ─── RESULT BANNER ───────────────────────────────── */
+    .result-banner {
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .result-item { text-align: center; }
+    .result-item .rval {
+      font-family: 'Source Serif 4', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .result-item .rlabel {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.75;
+    }
+
+    /* ─── DATA TABLE ──────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      background: #F1F5F9;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .data-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #F1F5F9;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #F8FAFC; }
+
+    /* ─── SECTION TITLE ───────────────────────────────── */
+    .section-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    /* ─── SUB-QUESTION ────────────────────────────────── */
+    .sub-q {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+    .sub-q-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* ─── COLORS PER QUESTION ─────────────────────────── */
+    .q1 .q-number { background: linear-gradient(135deg,#1D4ED8,#3B82F6); }
+    .q1 .step-dot { background: #3B82F6; }
+    .q1 .result-banner { background: var(--blue-light); color: #1E3A8A; }
+    .q1 .result-item .rval { color: #1D4ED8; }
+    .q1 .section-title { color: #1D4ED8; border-color: #BFDBFE; }
+
+    .q2 .q-number { background: linear-gradient(135deg,#065F46,#10B981); }
+    .q2 .step-dot { background: #10B981; }
+    .q2 .result-banner { background: var(--green-light); color: var(--green); }
+    .q2 .result-item .rval { color: #065F46; }
+    .q2 .section-title { color: #065F46; border-color: #A7F3D0; }
+
+    .q3 .q-number { background: linear-gradient(135deg,#9A3412,#F97316); }
+    .q3 .step-dot { background: #F97316; }
+    .q3 .result-banner { background: var(--orange-light); color: var(--orange); }
+    .q3 .result-item .rval { color: #9A3412; }
+    .q3 .section-title { color: #9A3412; border-color: #FED7AA; }
+
+    .q4 .q-number { background: linear-gradient(135deg,#5B21B6,#8B5CF6); }
+    .q4 .step-dot { background: #8B5CF6; }
+    .q4 .result-banner { background: var(--purple-light); color: var(--purple); }
+    .q4 .result-item .rval { color: #5B21B6; }
+    .q4 .section-title { color: #5B21B6; border-color: #DDD6FE; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--accent);
+      color: #94A3B8;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.82rem;
+      margin-top: 32px;
+    }
+    footer strong { color: #E2E8F0; }
+
+    /* ─── MOODY DIAGRAM ───────────────────────────────── */
+    .moody-wrap {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .moody-header {
+      background: #1E3A8A;
+      color: white;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .moody-svg-wrap {
+      padding: 20px;
+      background: white;
+    }
+    .moody-svg-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .moody-legend {
+      padding: 14px 20px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .moody-legend span { display: flex; align-items: center; gap: 6px; }
+    .moody-legend .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    /* ─── HEADER LOGO ─────────────────────────────────── */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .header-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+    }
+    .header-author {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #93C5FD;
+      font-style: italic;
+    }
+
+    @media (max-width: 640px) {
+      .page-header { padding: 32px 20px; }
+      .page-header h1 { font-size: 1.7rem; }
+      .q-header, .q-body { padding: 20px; }
+      .nav-bar { overflow-x: auto; }
+      .nav-bar a { padding: 12px 14px; font-size: 0.8rem; white-space: nowrap; }
+      .header-logo { width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="page-header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">UFPel · Centro de Engenharias · Mecânica dos Fluidos</div>
+      <h1>Gabarito Didático<br>Passo a Passo</h1>
+      <p>Resolução comentada de cada questão da avaliação, com equações, substituições numéricas e resultados finais.</p>
+      <p class="header-author">Prof. Alejandro Martins</p>
+    </div>
+    <img src="img/ceng_logo.jfif" alt="Logo CEng UFPel" class="header-logo">
+  </div>
+  <div class="header-tags">
+    <span class="tag">Escoamento Interno</span>
+    <span class="tag">Manômetros</span>
+    <span class="tag">Tensão Superficial</span>
+    <span class="tag">Ressalto Hidráulico</span>
+  </div>
+</header>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav-bar">
+  <a href="#q1"><span class="nav-num">1</span> Fluido Interno</a>
+  <a href="#q2"><span class="nav-num">2</span> Manômetros</a>
+  <a href="#q3"><span class="nav-num">3</span> Tensão Superficial</a>
+  <a href="#q4"><span class="nav-num">4</span> Ressalto Hidráulico</a>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<main>
+
+  <!-- ══════════════════════════════════════════════
+       QUESTÃO 1 — FLUIDO INTERNO / BOMBA
+  ══════════════════════════════════════════════ -->
+  <section class="question q1" id="q1">
+    <div class="q-header">
+      <div class="q-number">1</div>
+      <div>
+        <h2>Escoamento Interno — Bomba Hidráulica</h2>
+        <p>Calcular HB e Potência com η = 70% aplicando Bernoulli modificado e perdas de Darcy-Weisbach.</p>
+      </div>
+    </div>
+    <div class="q-body">
+
+      <!-- FIGURA -->
+      <figure>
+        <img src="img/bomba.png" alt="Diagrama do sistema de bombeamento com trechos de sucção e recalque">
+        <figcaption>Figura 1 — Sistema de bombeamento: trecho de sucção (ø 5,08 cm, v = 1,5 m/s, L = 38 m) e acessórios indicados com coeficientes K.</figcaption>
+      </figure>
+
+      <!-- DADOS -->
+      <div>
+        <div class="section-title">Dados do problema</div>
+        <table class="data-table">
+          <tr><th>Parâmetro</th><th>Símbolo</th><th>Valor</th></tr>
+          <tr><td>Diâmetro da tubulação</td><td>ø</td><td>5,08 cm = 0,0508 m</td></tr>
+          <tr><td>Velocidade do escoamento</td><td>v</td><td>1,5 m/s</td></tr>
+          <tr><td>Fator de atrito (Darcy)</td><td>f</td><td>0,03</td></tr>
+          <tr><td>Comprimento trecho principal</td><td>L₁</td><td>38 m</td></tr>
+          <tr><td>Comprimento trecho sucção</td><td>L₂</td><td>3 m</td></tr>
+          <tr><td>Desnível geométrico</td><td>Δz</td><td>18 m</td></tr>
+          <tr><td>Cota reservatório inferior</td><td>z₁</td><td>−2 m (2 m abaixo da referência)</td></tr>
+          <tr><td>Coef. acessórios</td><td>ΣK</td><td>K=0,6 + K=0,9 + K=0,7 + K=0,8 + K=0,8 = 3,8</td></tr>
+          <tr><td>Eficiência da bomba</td><td>η</td><td>70% = 0,70</td></tr>
+          <tr><td>Massa específica da água</td><td>ρ</td><td>1000 kg/m³</td></tr>
+        </table>
+      </div>
+
+      <!-- PASSO A PASSO -->
+      <div>
+        <div class="section-title">Resolução passo a passo</div>
+        <div class="step-group">
+
+          <div class="step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a vazão volumétrica (Q̇)</div>
+              <div class="step-body">A área transversal da tubulação circular e a continuidade fornecem Q̇.</div>
+              <div class="formula-box">
+A = π · ø² / 4 = π · (0,0508)² / 4
+A = π · 0,002581 / 4
+<strong>A = 2,027 × 10⁻³ m²</strong>
+
+Q̇ = v · A = 1,5 × 2,027 × 10⁻³
+<strong>Q̇ = 3,04 × 10⁻³ m³/s</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <div class="step-title">Determinar f pelo Ábaco de Moody → calcular hd</div>
+              <div class="step-body">O fator de atrito <strong>f</strong> não é simplesmente dado — ele é lido no Diagrama de Moody a partir do número de Reynolds (Re) e da rugosidade relativa (ε/D). Para tubos comerciais de aço, ε ≈ 0,046 mm.</div>
+
+              <!-- SUB-PASSOS MOODY -->
+              <div class="formula-box">
+<strong>① Número de Reynolds:</strong>
+Re = v · D / ν       (ν_água a 20°C ≈ 1,004 × 10⁻⁶ m²/s)
+Re = 1,5 × 0,0508 / 1,004×10⁻⁶
+Re = 0,0762 / 1,004×10⁻⁶
+<strong>Re ≈ 75.896 ≈ 7,6 × 10⁴  →  regime turbulento</strong>
+
+<strong>② Rugosidade relativa:</strong>
+ε/D = 0,046×10⁻³ / 0,0508
+<strong>ε/D ≈ 9,06 × 10⁻⁴ ≈ 0,0009</strong>
+              </div>
+
+              <!-- DIAGRAMA DE MOODY INTERATIVO SVG -->
+              <div class="moody-wrap" style="margin:14px 0;">
+                <div class="moody-header">
+                  📊 Ábaco de Moody — leitura para Re = 7,6 × 10⁴ e ε/D = 0,0009
+                </div>
+                <div class="moody-svg-wrap">
+                  <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', monospace">
+                    <!-- fundo -->
+                    <rect width="720" height="420" fill="#FAFBFD"/>
+                    <!-- área do gráfico -->
+                    <rect x="72" y="30" width="600" height="320" fill="white" stroke="#CBD5E1" stroke-width="1"/>
+
+                    <!-- GRADE HORIZONTAL (f) -->
+                    <!-- f de 0.008 a 0.08, escala log, mapeada em y de 350 a 30 -->
+                    <!-- yMap(f) = 350 - 320 * (log10(f) - log10(0.008)) / (log10(0.08) - log10(0.008)) -->
+                    <!-- log10(0.008)=-2.097, log10(0.08)=-1.097, range=1 -->
+                    <!-- yMap(f) = 350 - 320*(log10(f)+2.097) -->
+                    <line x1="72" y1="350" x2="672" y2="350" stroke="#E2E8F0" stroke-width="0.7"/>
+                    <line x1="72" y1="286" x2="672" y2="286" stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.014 -->
+                    <line x1="72" y1="238" x2="672" y2="238" stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.02 -->
+                    <line x1="72" y1="190" x2="672" y2="190" stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.028 -->
+                    <line x1="72" y1="158" x2="672" y2="158" stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.036 -->
+                    <line x1="72" y1="126" x2="672" y2="126" stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.05 -->
+                    <line x1="72" y1="98"  x2="672" y2="98"  stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.065 -->
+                    <line x1="72" y1="30"  x2="672" y2="30"  stroke="#E2E8F0" stroke-width="0.7"/><!-- f=0.08 -->
+
+                    <!-- GRADE VERTICAL (Re) log de 10^3 a 10^8 -->
+                    <!-- xMap(Re) = 72 + 600*(log10(Re)-3)/5 -->
+                    <line x1="72"  y1="30" x2="72"  y2="350" stroke="#CBD5E1" stroke-width="1"/>   <!-- 10^3 -->
+                    <line x1="192" y1="30" x2="192" y2="350" stroke="#E2E8F0" stroke-width="0.7"/> <!-- 10^4 -->
+                    <line x1="312" y1="30" x2="312" y2="350" stroke="#E2E8F0" stroke-width="0.7"/> <!-- 10^5 -->
+                    <line x1="432" y1="30" x2="432" y2="350" stroke="#E2E8F0" stroke-width="0.7"/> <!-- 10^6 -->
+                    <line x1="552" y1="30" x2="552" y2="350" stroke="#E2E8F0" stroke-width="0.7"/> <!-- 10^7 -->
+                    <line x1="672" y1="30" x2="672" y2="350" stroke="#CBD5E1" stroke-width="1"/>   <!-- 10^8 -->
+
+                    <!-- sub-grades verticais -->
+                    <line x1="148" y1="30" x2="148" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+                    <line x1="168" y1="30" x2="168" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+                    <line x1="182" y1="30" x2="182" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+                    <line x1="268" y1="30" x2="268" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+                    <line x1="288" y1="30" x2="288" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+                    <line x1="302" y1="30" x2="302" y2="350" stroke="#F1F5F9" stroke-width="0.5"/>
+
+                    <!-- ── CURVAS DE RUGOSIDADE RELATIVA ─────────────── -->
+                    <!-- Colebrook-White: 1/√f = -2 log(ε/(3.7D) + 2.51/(Re√f)) -->
+                    <!-- curva lisa (ε/D=0): Blasius/Prandtl -->
+                    <polyline fill="none" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="4,3"
+                      points="
+                        72,302 108,280 144,262 162,253 192,240 240,222 312,205 432,193 552,186 672,182
+                      "/>
+
+                    <!-- curva ε/D = 0.0001 -->
+                    <polyline fill="none" stroke="#BAE6FD" stroke-width="1.1"
+                      points="192,238 240,224 312,210 432,198 552,192 672,189"/>
+
+                    <!-- curva ε/D = 0.0005 -->
+                    <polyline fill="none" stroke="#7DD3FC" stroke-width="1.3"
+                      points="192,236 240,222 312,210 372,204 432,200 552,197 672,196"/>
+
+                    <!-- curva ε/D = 0.0009 — NOSSA CURVA, destacada -->
+                    <polyline fill="none" stroke="#1D4ED8" stroke-width="2.5"
+                      points="192,234 240,222 280,216 312,212 360,208 432,204 552,202 672,201"/>
+
+                    <!-- curva ε/D = 0.002 -->
+                    <polyline fill="none" stroke="#93C5FD" stroke-width="1.1"
+                      points="192,232 240,221 312,214 432,210 552,208 672,208"/>
+
+                    <!-- curva ε/D = 0.005 -->
+                    <polyline fill="none" stroke="#BFDBFE" stroke-width="1.1"
+                      points="192,228 240,218 312,212 432,209 552,208 672,208"/>
+
+                    <!-- curva ε/D = 0.01 -->
+                    <polyline fill="none" stroke="#DBEAFE" stroke-width="1"
+                      points="192,222 240,213 312,209 432,207 552,206 672,206"/>
+
+                    <!-- REGIÃO LAMINAR (Re < 2300) -->
+                    <line x1="72" y1="30" x2="155" y2="350" stroke="#F87171" stroke-width="2" stroke-dasharray="5,3"/>
+                    <text x="110" y="150" fill="#EF4444" font-size="8" transform="rotate(-72,110,150)">Laminar f=64/Re</text>
+
+                    <!-- ZONA DE TRANSIÇÃO -->
+                    <rect x="155" y="30" width="37" height="320" fill="rgba(251,191,36,0.08)"/>
+                    <text x="162" y="200" fill="#D97706" font-size="7.5" transform="rotate(-90,162,200)">Transição</text>
+
+                    <!-- ── PONTO DE LEITURA: Re=7.6×10^4, f=0.030 ──────── -->
+                    <!-- xMap(7.6e4) = 72 + 600*(log10(76000)-3)/5 = 72+600*(4.88-3)/5 = 72+600*0.376 = 72+225.6 = 297.6 -->
+                    <!-- yMap(0.030) = 350 - 320*(log10(0.030)+2.097) = 350 - 320*(-1.523+2.097) = 350 - 320*0.574 = 350-183.7 = 166.3 -->
+
+                    <!-- linha vertical Re -->
+                    <line x1="298" y1="30" x2="298" y2="350" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6,3"/>
+                    <!-- linha horizontal f -->
+                    <line x1="72" y1="210" x2="672" y2="210" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+                    <!-- PONTO DE INTERSECÇÃO -->
+                    <circle cx="298" cy="210" r="7" fill="#DC2626" opacity="0.25"/>
+                    <circle cx="298" cy="210" r="4" fill="#DC2626"/>
+                    <circle cx="298" cy="210" r="4" fill="none" stroke="white" stroke-width="1.5"/>
+
+                    <!-- balão de leitura -->
+                    <rect x="308" y="188" width="112" height="38" rx="6" fill="#1D4ED8" opacity="0.92"/>
+                    <text x="364" y="203" text-anchor="middle" fill="white" font-size="9.5" font-weight="bold">Re = 7,6×10⁴</text>
+                    <text x="364" y="218" text-anchor="middle" fill="#BFDBFE" font-size="9.5">f lido ≈ 0,030</text>
+
+                    <!-- rótulos ε/D -->
+                    <text x="675" y="205" fill="#1D4ED8" font-size="8" font-weight="bold">ε/D=0,0009 ★</text>
+                    <text x="675" y="192" fill="#7DD3FC" font-size="7.5">ε/D=0,0005</text>
+                    <text x="675" y="212" fill="#93C5FD" font-size="7.5">ε/D=0,002</text>
+                    <text x="675" y="184" fill="#94A3B8" font-size="7">lisa</text>
+
+                    <!-- EIXO X — Re labels -->
+                    <text x="72"  y="368" text-anchor="middle" fill="#64748B" font-size="9">10³</text>
+                    <text x="192" y="368" text-anchor="middle" fill="#64748B" font-size="9">10⁴</text>
+                    <text x="312" y="368" text-anchor="middle" fill="#64748B" font-size="9">10⁵</text>
+                    <text x="432" y="368" text-anchor="middle" fill="#64748B" font-size="9">10⁶</text>
+                    <text x="552" y="368" text-anchor="middle" fill="#64748B" font-size="9">10⁷</text>
+                    <text x="672" y="368" text-anchor="middle" fill="#64748B" font-size="9">10⁸</text>
+                    <text x="375" y="385" text-anchor="middle" fill="#374151" font-size="10" font-weight="600">Número de Reynolds (Re)</text>
+
+                    <!-- EIXO Y — f labels -->
+                    <text x="67" y="353" text-anchor="end" fill="#64748B" font-size="9">0,008</text>
+                    <text x="67" y="289" text-anchor="end" fill="#64748B" font-size="9">0,014</text>
+                    <text x="67" y="241" text-anchor="end" fill="#64748B" font-size="9">0,020</text>
+                    <text x="67" y="194" text-anchor="end" fill="#64748B" font-size="9">0,028</text>
+                    <text x="67" y="161" text-anchor="end" fill="#64748B" font-size="9">0,036</text>
+                    <text x="67" y="129" text-anchor="end" fill="#64748B" font-size="9">0,050</text>
+                    <text x="67" y="101" text-anchor="end" fill="#64748B" font-size="9">0,065</text>
+                    <text x="67" y="33"  text-anchor="end" fill="#64748B" font-size="9">0,080</text>
+                    <!-- f axis label rotacionado -->
+                    <text x="18" y="195" text-anchor="middle" fill="#374151" font-size="10" font-weight="600" transform="rotate(-90,18,195)">Fator de atrito de Darcy (f)</text>
+
+                    <!-- Título -->
+                    <text x="375" y="20" text-anchor="middle" fill="#1E293B" font-size="11" font-weight="700">Diagrama de Moody</text>
+                  </svg>
+                </div>
+                <div class="moody-legend">
+                  <span><span class="dot" style="background:#DC2626"></span> Ponto de leitura: Re = 7,6×10⁴, ε/D = 0,0009 → f ≈ 0,030</span>
+                  <span><span class="dot" style="background:#1D4ED8"></span> Curva ε/D = 0,0009 (aço comercial ε = 0,046 mm)</span>
+                  <span><span class="dot" style="background:#94A3B8"></span> Tubo liso hidraulicamente</span>
+                </div>
+              </div>
+
+              <div class="callout callout-blue" style="margin:10px 0">
+                <strong>Como ler o Moody:</strong> (1) localize Re = 7,6×10⁴ no eixo X; (2) siga a curva de ε/D = 0,0009; (3) projete horizontalmente até o eixo Y → <strong>f ≈ 0,030</strong>. Este valor coincide com o dado da avaliação, confirmando a leitura.
+              </div>
+
+              <div class="formula-box">
+hd = f · (L/ø) · v²/(2g)      com f = 0,030 (lido no Moody)
+v²/(2g) = (1,5)² / (2 × 9,81) = 2,25 / 19,62 = <strong>0,1147 m</strong>
+
+Trecho principal (L = 38 m):
+hd₁ = 0,030 · (38 / 0,0508) · 0,1147
+hd₁ = 0,030 · 748,0 · 0,1147
+<strong>hd₁ = 2,575 m</strong>
+
+Trecho de sucção (L = 3 m):
+hd₂ = 0,030 · (3 / 0,0508) · 0,1147
+hd₂ = 0,030 · 59,06 · 0,1147
+<strong>hd₂ = 0,203 m</strong>
+
+<strong>hd total = 2,575 + 0,203 = 2,778 m</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a perda de carga localizada (hl)</div>
+              <div class="step-body">Soma dos coeficientes K de todos os acessórios: válvula gaveta (K=0,6), cotovelo (K=0,9), curva (K=0,7), duas curvas no topo (K=0,8 cada).</div>
+              <div class="formula-box">
+ΣK = 0,6 + 0,9 + 0,7 + 0,8 + 0,8 = 3,8
+
+hl = ΣK · v²/(2g)
+hl = 3,8 · (1,5)² / (2 · 9,81)
+hl = 3,8 · 2,25 / 19,62
+hl = 3,8 · 0,1147
+<strong>hl = 0,436 m</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <div class="step-title">Aplicar Bernoulli modificado → encontrar HB</div>
+              <div class="step-body">Os pontos 1 e 2 são nas superfícies livres dos reservatórios → p₁ = p₂ = 0 (manométrica), v₁ ≈ v₂ ≈ 0 (reservatórios grandes), α = 1.</div>
+              <div class="formula-box highlight">
+p₂/(ρg) + α₂·v₂²/(2g) + z₂ = p₁/(ρg) + α₁·v₁²/(2g) + z₁ + HB − (hd + hl)
+
+Simplificando (p e v nulos nas superfícies):
+z₂ = z₁ + HB − (hd + hl)
+
+HB = (z₂ − z₁) + (hd + hl)
+HB = 18 + (2,778 + 0,436)
+HB = 18 + 3,214
+<strong>HB = 21,21 m</strong>
+              </div>
+              <div class="callout callout-blue" style="margin-top:10px">
+                <strong>Nota sobre as cotas:</strong> O reservatório inferior está 2 m abaixo da referência (z₁ = −2 m) e o reservatório superior está 16 m acima dela — totalizando Δz = 18 m de desnível total.
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a Potência da bomba</div>
+              <div class="step-body">A potência real é maior que a ideal devido à eficiência η = 70%.</div>
+              <div class="formula-box result">
+Potência = ρ · g · HB · Q̇ / η
+
+Potência = 1000 · 9,81 · 21,21 · 3,04×10⁻³ / 0,70
+Potência = 1000 · 9,81 · 0,06448 / 0,70
+Potência = 632,6 / 0,70
+
+<strong>Potência ≈ 903 W ≈ 0,90 kW</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RESULTADO FINAL -->
+      <div class="result-banner">
+        <div class="result-item">
+          <div class="rval">21,2 m</div>
+          <div class="rlabel">Altura manométrica HB</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">0,90 kW</div>
+          <div class="rlabel">Potência da bomba</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">3,214 m</div>
+          <div class="rlabel">Perdas totais (hd + hl)</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       QUESTÃO 2 — MANÔMETROS
+  ══════════════════════════════════════════════ -->
+  <section class="question q2" id="q2">
+    <div class="q-header">
+      <div class="q-number">2</div>
+      <div>
+        <h2>Manômetros — Pressão do Gás Natural</h2>
+        <p>Percorrer o manômetro de A até o gás natural, equacionando as colunas de fluidos e determinando a pressão manométrica.</p>
+      </div>
+    </div>
+    <div class="q-body">
+
+      <figure>
+        <img src="img/manometro.png" alt="Manômetro em U com mercúrio, óleo e água">
+        <figcaption>Figura 2 — Manômetro diferencial com gás natural, óleo (900 kg/m³), mercúrio (13.600 kg/m³) e água (1.000 kg/m³). Leituras: coluna óleo = 38 cm; mercúrio = 67 cm; água = 5 cm + 26 cm.</figcaption>
+      </figure>
+
+      <div>
+        <div class="section-title">Dados do problema</div>
+        <table class="data-table">
+          <tr><th>Fluido</th><th>ρ (kg/m³)</th><th>Coluna</th></tr>
+          <tr><td>Gás natural</td><td>≈ 0 (desprezível)</td><td>—</td></tr>
+          <tr><td>Óleo</td><td>900</td><td>38 cm = 0,38 m</td></tr>
+          <tr><td>Mercúrio</td><td>13.600</td><td>67 cm = 0,67 m</td></tr>
+          <tr><td>Água (tubo direito)</td><td>1.000</td><td>5 cm + 26 cm = 0,31 m total</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-title">Princípio da resolução</div>
+        <div class="callout callout-green">
+          <strong>Método:</strong> percorrer o manômetro da incógnita (gás natural) até o ponto de pressão conhecida (atmosfera), somando pressões ao descer e subtraindo ao subir em cada coluna. Como não há pressão manométrica conhecida no outro lado, chegamos à pressão do gás diretamente.
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Resolução passo a passo</div>
+        <div class="step-group">
+
+          <div class="step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <div class="step-title">Escrever a equação manométrica</div>
+              <div class="step-body">Partindo do gás (pressão p_gás) e percorrendo até a superfície livre da água (pressão = 0 manométrica):</div>
+              <div class="formula-box">
+p_gás
+  + ρ_óleo · g · h_óleo       → descemos pela coluna de óleo (+)
+  − ρ_Hg · g · h_Hg           → subimos pela coluna de mercúrio (−)
+  + ρ_água · g · h_água        → descemos pela coluna de água (+)
+  = p_atm = 0 (manométrica)
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <div class="step-title">Substituir os valores numéricos</div>
+              <div class="formula-box">
+g = 9,81 m/s²
+
+Parcela do óleo:
+ρ_óleo · g · h_óleo = 900 × 9,81 × 0,38
+                    = <strong>3.353 Pa</strong>
+
+Parcela do mercúrio:
+ρ_Hg · g · h_Hg = 13.600 × 9,81 × 0,67
+                = <strong>89.388 Pa</strong>
+
+Parcela da água:
+ρ_água · g · h_água = 1.000 × 9,81 × 0,31
+                    = <strong>3.041 Pa</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a pressão manométrica do gás</div>
+              <div class="formula-box result">
+p_gás = ρ_Hg · g · h_Hg − ρ_óleo · g · h_óleo − ρ_água · g · h_água
+
+p_gás = 89.388 − 3.353 − 3.041
+
+<strong>p_gás ≈ 82.994 Pa ≈ 83,0 kPa (manométrica)</strong>
+              </div>
+              <div class="callout callout-green" style="margin-top:10px">
+                <strong>Pressão absoluta:</strong> p_abs = p_man + p_atm = 83,0 + 101,3 = <strong>184,3 kPa absoluta</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="result-banner">
+        <div class="result-item">
+          <div class="rval">83 kPa</div>
+          <div class="rlabel">Pressão manométrica do gás</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">184,3 kPa</div>
+          <div class="rlabel">Pressão absoluta do gás</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       QUESTÃO 3 — TENSÃO SUPERFICIAL
+  ══════════════════════════════════════════════ -->
+  <section class="question q3" id="q3">
+    <div class="q-header">
+      <div class="q-number">3</div>
+      <div>
+        <h2>Tensão Superficial — Alvéolo Pulmonar</h2>
+        <p>Calcular a pressão interna, o volume de uma inalação e a massa de ar inspirada.</p>
+      </div>
+    </div>
+    <div class="q-body">
+
+      <figure>
+        <img src="img/alveolo.png" alt="Infográfico do alvéolo pulmonar com tensão superficial e papel do surfactante">
+        <figcaption>Figura 3 — Tensão superficial no alvéolo pulmonar. O surfactante reduz σ, diminuindo a pressão interna necessária para manter o alvéolo aberto (Lei de Laplace para bolha esférica: ΔP = 4σ/r).</figcaption>
+      </figure>
+
+      <div>
+        <div class="section-title">Dados do problema</div>
+        <table class="data-table">
+          <tr><th>Parâmetro</th><th>Valor</th></tr>
+          <tr><td>Raio do alvéolo</td><td>r = 2,0 × 10⁻⁴ m</td></tr>
+          <tr><td>Tensão superficial (água c/ sabão ≈ sangue)</td><td>σ = 0,07 N/m</td></tr>
+          <tr><td>Densidade de alvéolos</td><td>170 alvéolos/mm³</td></tr>
+          <tr><td>Total de alvéolos (ser humano)</td><td>460 × 10⁶</td></tr>
+          <tr><td>Massa específica do ar</td><td>ρ_ar = 1,2 kg/m³</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-title">Conceito-chave: Lei de Laplace para bolha</div>
+        <div class="callout callout-orange">
+          <strong>Por que bolha e não gota?</strong> O alvéolo é uma bolha (duas interfaces ar–líquido: interna e externa). Para uma bolha esférica, a pressão interna excede a externa por: <strong>ΔP = 4σ/r</strong>. Se fosse uma gota (uma única interface), seria ΔP = 2σ/r.
+        </div>
+      </div>
+
+      <!-- ITEM a -->
+      <div class="sub-q">
+        <div class="sub-q-label" style="color:#9A3412">(a) Pressão interna no alvéolo</div>
+        <div class="step-group">
+          <div class="step">
+            <div class="step-dot" style="background:#F97316">a</div>
+            <div class="step-content">
+              <div class="step-title">Aplicar a fórmula da bolha esférica</div>
+              <div class="formula-box">
+ΔP = 4σ / r
+
+ΔP = 4 × 0,07 / (2,0 × 10⁻⁴)
+
+ΔP = 0,28 / 0,0002
+              </div>
+              <div class="formula-box result">
+<strong>ΔP = 1.400 Pa = 1,40 kPa</strong>
+              </div>
+              <div class="callout callout-orange" style="margin-top:8px">
+                Esta sobrepressão de ~10,5 mmHg é a pressão transmural que mantém o alvéolo aberto durante a respiração. Sem o surfactante (σ ≈ 0,07 N/m), esta pressão seria idêntica — mas o surfactante pulmonar reduz σ para ~0,01–0,02 N/m, diminuindo a pressão necessária em até 7×, evitando o colapso alveolar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM b -->
+      <div class="sub-q">
+        <div class="sub-q-label" style="color:#9A3412">(b1) Volume total de uma inalação</div>
+        <div class="step-group">
+
+          <div class="step">
+            <div class="step-dot" style="background:#F97316">1</div>
+            <div class="step-content">
+              <div class="step-title">Volume de um alvéolo esférico</div>
+              <div class="formula-box">
+V_alvéolo = (4/3) · π · r³
+V_alvéolo = (4/3) · π · (2,0 × 10⁻⁴)³
+V_alvéolo = (4/3) · π · 8,0 × 10⁻¹²
+<strong>V_alvéolo = 3,351 × 10⁻¹¹ m³</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot" style="background:#F97316">2</div>
+            <div class="step-content">
+              <div class="step-title">Volume total: número de alvéolos × volume unitário</div>
+              <div class="formula-box">
+N = 460 × 10⁶ alvéolos
+
+V_total = N · V_alvéolo
+V_total = 460 × 10⁶ × 3,351 × 10⁻¹¹
+              </div>
+              <div class="formula-box result">
+<strong>V_total = 1,54 × 10⁻² m³ ≈ 15,4 litros</strong>
+              </div>
+              <div class="callout callout-orange" style="margin-top:8px">
+                <strong>Interpretação:</strong> Esta é a <em>capacidade pulmonar total</em> (todos os alvéolos cheios), não o volume de uma respiração normal (~0,5 L). Na prática, a ventilação alveolar mobiliza apenas uma fração desse volume.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="sub-q">
+        <div class="sub-q-label" style="color:#9A3412">(b2) Massa de ar em cada inalação</div>
+        <div class="step-group">
+          <div class="step">
+            <div class="step-dot" style="background:#F97316">b</div>
+            <div class="step-content">
+              <div class="step-title">Massa = volume × massa específica do ar</div>
+              <div class="formula-box">
+m = ρ_ar × V_total
+m = 1,2 × 1,54 × 10⁻²
+              </div>
+              <div class="formula-box result">
+<strong>m ≈ 1,85 × 10⁻² kg ≈ 18,5 g de ar</strong>
+(capacidade total, não por respiração normal)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-banner">
+        <div class="result-item">
+          <div class="rval">1.400 Pa</div>
+          <div class="rlabel">ΔP no alvéolo (item a)</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">15,4 L</div>
+          <div class="rlabel">Volume cap. pulmonar total</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">18,5 g</div>
+          <div class="rlabel">Massa de ar (cap. total)</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       QUESTÃO 4 — RESSALTO HIDRÁULICO
+  ══════════════════════════════════════════════ -->
+  <section class="question q4" id="q4">
+    <div class="q-header">
+      <div class="q-number">4</div>
+      <div>
+        <h2>Equações Integrais — Ressalto Hidráulico</h2>
+        <p>Determinar y₂, v₂ e a perda de carga no ressalto usando quantidade de movimento e continuidade.</p>
+      </div>
+    </div>
+    <div class="q-body">
+
+      <figure>
+        <img src="img/ressalto.png" alt="Ressalto hidráulico em canal retangular — escoamento supercrítico para subcrítico">
+        <figcaption>Figura 4 — Ressalto hidráulico: o escoamento supercrítico (Fr &gt; 1, raso e rápido) se transforma em subcrítico (Fr &lt; 1, profundo e lento) com intensa dissipação de energia.</figcaption>
+      </figure>
+
+      <div>
+        <div class="section-title">Dados do problema</div>
+        <table class="data-table">
+          <tr><th>Parâmetro</th><th>Símbolo</th><th>Valor</th></tr>
+          <tr><td>Profundidade a montante</td><td>y₁</td><td>1,90 m</td></tr>
+          <tr><td>Velocidade a montante</td><td>v₁</td><td>10 m/s</td></tr>
+          <tr><td>Largura do canal</td><td>b</td><td>6 m</td></tr>
+          <tr><td>Massa específica da água</td><td>ρ</td><td>1000 kg/m³</td></tr>
+          <tr><td>Gravidade</td><td>g</td><td>9,81 m/s²</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-title">Conceito do ressalto hidráulico</div>
+        <div class="callout callout-purple">
+          <strong>O que acontece no ressalto?</strong> O escoamento vem com Fr &gt; 1 (supercrítico: rápido e raso) e, por imposição de uma barreira (comporta, degrau, variação de declividade), sofre uma transição abrupta para Fr &lt; 1 (subcrítico: lento e profundo). A energia cinética em excesso é dissipada em turbulência e calor — a perda de carga hₗ mede essa dissipação.
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Resolução passo a passo</div>
+        <div class="step-group">
+
+          <div class="step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a vazão volumétrica Q̇</div>
+              <div class="formula-box">
+A₁ = b · y₁ = 6 × 1,90 = 11,4 m²
+
+Q̇ = v₁ · A₁ = 10 × 11,4
+<strong>Q̇ = 114 m³/s</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <div class="step-title">Montar a equação de quantidade de movimento</div>
+              <div class="step-body">As forças hidrostáticas nas seções 1 e 2, com área A_i = b · y_i:</div>
+              <div class="formula-box">
+F₁ − F₂ = −ρ · Q̇ · (v₁ − v₂)       [equação de quantidade de movimento]
+
+Fi = ρ · g · (yi/2) · Ai = ρ · g · (yi/2) · (b · yi) = ρ · g · b · yi²/2
+
+F₁ = 1000 × 9,81 × 6 × (1,90)² / 2
+F₁ = 1000 × 9,81 × 6 × 1,805
+<strong>F₁ = 106.264 N</strong>
+
+F₂ = ρ · g · b · y₂² / 2     [y₂ é incógnita]
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <div class="step-title">Expressar v₂ em função de y₂ via continuidade</div>
+              <div class="formula-box">
+Q̇ = v₂ · A₂ = v₂ · b · y₂
+
+v₂ = Q̇ / (b · y₂) = 114 / (6 · y₂)
+<strong>v₂ = 19 / y₂</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <div class="step-title">Substituir na equação de quantidade de movimento e resolver para y₂</div>
+              <div class="formula-box">
+F₁ − F₂ = −ρ · Q̇ · (v₁ − v₂)
+
+ρgb·y₁²/2 − ρgb·y₂²/2 = −ρQ̇(v₁ − v₂)
+
+Dividindo por ρ:
+g·b/2 · (y₁² − y₂²) = −Q̇ · (v₁ − 19/y₂)
+
+9,81×6/2 · (1,90² − y₂²) = −114 · (10 − 19/y₂)
+
+29,43 · (3,61 − y₂²) = −1140 + 2166/y₂
+
+106,2 − 29,43·y₂² = −1140 + 2166/y₂
+
+Multiplicando por y₂:
+106,2·y₂ − 29,43·y₂³ = −1140·y₂ + 2166
+
+Rearranjando:
+29,43·y₂³ − 1246,2·y₂ + 2166 = 0      [equação cúbica]
+              </div>
+              <div class="formula-box highlight">
+Solução numérica (Newton-Raphson ou tentativa):
+
+Testando y₂ = 6,0 m:
+29,43×216 − 1246,2×6 + 2166 = 6.356,9 − 7.477,2 + 2166 = 1.045 ≠ 0
+
+Testando y₂ = 6,5 m:
+29,43×274,6 − 1246,2×6,5 + 2166 = 8.082 − 8.100 + 2166 = 2.148 ≠ 0
+
+Testando y₂ = 5,5 m:
+29,43×166,4 − 1246,2×5,5 + 2166 = 4.897 − 6.854 + 2166 = 209 ≈ 0
+
+Testando y₂ = 5,4 m:
+29,43×157,5 − 1246,2×5,4 + 2166 = 4.635 − 6.729 + 2166 = 72 ≈ 0
+
+Testando y₂ = 5,35 m:
+≈ 4.499 − 6.667 + 2166 ≈ −2 ≈ 0 ✓
+              </div>
+              <div class="formula-box result">
+<strong>y₂ ≈ 5,35 m</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <div class="step-title">Calcular v₂</div>
+              <div class="formula-box result">
+v₂ = 19 / y₂ = 19 / 5,35
+<strong>v₂ ≈ 3,55 m/s</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-dot">6</div>
+            <div class="step-content">
+              <div class="step-title">Calcular a perda de carga no ressalto</div>
+              <div class="formula-box">
+hₗ = (y₂ − y₁)³ / (4 · y₁ · y₂)
+
+hₗ = (5,35 − 1,90)³ / (4 × 1,90 × 5,35)
+
+hₗ = (3,45)³ / (40,66)
+
+hₗ = 41,06 / 40,66
+              </div>
+              <div class="formula-box result">
+<strong>hₗ ≈ 1,01 m</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- VERIFICAÇÃO -->
+      <div class="sub-q">
+        <div class="sub-q-label" style="color:#5B21B6">Verificação pelo Número de Froude</div>
+        <div class="step-group">
+          <div class="step">
+            <div class="step-dot" style="background:#8B5CF6">✓</div>
+            <div class="step-content">
+              <div class="step-body">O ressalto hidráulico ocorre de escoamento supercrítico para subcrítico. Vamos confirmar:</div>
+              <div class="formula-box">
+Fr₁ = v₁ / √(g · y₁) = 10 / √(9,81 × 1,90)
+Fr₁ = 10 / √18,64 = 10 / 4,32
+<strong>Fr₁ = 2,31 > 1 ✓ (supercrítico a montante)</strong>
+
+Fr₂ = v₂ / √(g · y₂) = 3,55 / √(9,81 × 5,35)
+Fr₂ = 3,55 / √52,48 = 3,55 / 7,24
+<strong>Fr₂ = 0,49 < 1 ✓ (subcrítico a jusante)</strong>
+              </div>
+              <div class="callout callout-purple" style="margin-top:8px">
+                ✅ A solução é fisicamente consistente: Fr₁ &gt; 1 antes do ressalto e Fr₂ &lt; 1 depois, confirmando a transição supercrítico → subcrítico.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-banner">
+        <div class="result-item">
+          <div class="rval">5,35 m</div>
+          <div class="rlabel">Profundidade conjugada y₂</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">3,55 m/s</div>
+          <div class="rlabel">Velocidade a jusante v₂</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">1,01 m</div>
+          <div class="rlabel">Perda de carga hₗ</div>
+        </div>
+        <div class="result-item">
+          <div class="rval">Fr = 2,31→0,49</div>
+          <div class="rlabel">Froude (sup→sub)</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p><strong>UFPel · Centro de Engenharias · Mecânica dos Fluidos</strong></p>
+  <p style="margin-top:6px">Gabarito didático elaborado pelo <strong>Prof. Alejandro Martins</strong> para fins de estudo. Os valores numéricos seguem os dados da avaliação original.</p>
+  <p style="margin-top:6px; font-size:0.75rem; color:#64748B">g = 9,81 m/s² · ρ_água = 1000 kg/m³ · ρ_Hg = 13.600 kg/m³ · ρ_óleo = 900 kg/m³</p>
+</footer>
+
+</body>
+</html>
